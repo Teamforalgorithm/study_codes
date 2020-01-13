@@ -3,7 +3,6 @@ def dfs(idx):
     if s[-i:] == s[-2*i:-i]:
       return -1
 
-
   if idx == n:
     for i in range(n):
       print(s[i], end = '')
