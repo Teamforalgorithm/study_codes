@@ -15,11 +15,11 @@ chicken = [(nx+1, ny+1) for nx, row in enumerate(maps) for ny, val in enumerate(
 home = [(nx+1, ny+1) for nx, row in enumerate(maps) for ny, val in enumerate(row) if val == 1]
 
 
-for left_chicken in itertools.combinations(chicken, M):
+for comb in itertools.combinations(chicken, M):
   tmp = 0
   for h_pos in home:
       chicken_distance = 99999
-      for c_pos in left_chicken:
+      for c_pos in comb:
           distance = abs(h_pos[0] - c_pos[0]) + abs(h_pos[1] - c_pos[1])
           if distance < chicken_distance:
               chicken_distance = distance
