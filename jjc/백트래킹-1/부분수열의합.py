@@ -1,5 +1,6 @@
 import sys
-input=sys.stdin.readline
+input = sys.stdin.readline
+
 
 def make_comb(arr, comb, s):
     cnt = 0
@@ -10,6 +11,7 @@ def make_comb(arr, comb, s):
             if comb[-1] == s:
                 cnt += 1
     return cnt
+
 
 if __name__ == "__main__":
     n, s = map(int, input().split())
