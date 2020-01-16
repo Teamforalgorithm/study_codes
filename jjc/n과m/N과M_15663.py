@@ -3,9 +3,6 @@ import collections
 n,m = map(int, sys.stdin.readline().split())
 arr = sorted(list(map(int, sys.stdin.readline().split())))
 num, count = map(list, zip(*list(collections.Counter(arr).items())))
-tmp = list(collections.Counter(arr).items())
-print(tmp)
-print(num, count)
 a = [0]*9
 def solve(c):
     if c==m:
