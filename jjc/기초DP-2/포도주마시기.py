@@ -2,7 +2,6 @@ import sys
 input: lambda: sys.stdin.readline().strip()
 
 n = int(input())
-# dp = [0] * (10001)
 dp = [0]
 acc = [0] * (n+1)
 for _ in range(n):
