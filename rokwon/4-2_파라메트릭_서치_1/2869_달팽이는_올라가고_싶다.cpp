@@ -1,27 +1,38 @@
-#include<iostream>
-#include<vector>
- 
+#include <stdio.h>
+#include <iostream>
+#include <string.h>
+#include <string>
+#include <math.h>
+#include <algorithm>
+#include <stack>
+#include <queue>
+#include <vector>
+#include <map>
+#include <deque>
+#include <set>
+#include <functional>
 using namespace std;
- 
-int main(void){
 
-    ios_base :: sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+int main()
+{
+    long long st, ed, a, b, v, mid, dap = 1000000001;
+    cin >> a >> b >> v;
 
-    int A, B, V;
-    int res = 0, div = 0;
-    
-    cin >> A >> B >> V;
+    st = 1;
+    ed = v;
 
-    res = (V - B) / (A - B);
-    div = (V - B) % (A - B);
-
-    if (div != 0) {
-        res++;
+    while (st < ed)
+    {
+        mid = (st + ed) / 2;
+        if ((mid - 1) * (a - b) + a >= v)
+        {
+            ed = mid;
+            dap = min(dap, mid);
+        }
+        else
+        {
+            st = mid + 1;
+        }
     }
-
-    cout << res;
- 
-    return 0;
+    cout << dap;
 }

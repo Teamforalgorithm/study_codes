@@ -6,8 +6,7 @@ schedules = []
 
 for i in range(num):
     schedule = tuple(map(int, sys.stdin.readline().split()))
-    schedules.append(schedule)
-
+    schedules.appen
 schedules.sort(key=lambda el: el[1])
 
 time = 0
