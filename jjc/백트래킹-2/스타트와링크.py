@@ -17,7 +17,10 @@ for cur in comb:
   cur_comb = list(combinations(cur, 2))
   rest_comb = list(combinations(rest, 2))
 
-  for x, y in cur_comb:
+  print(cur_comb)
+  print(rest_comb)
+  
+  for x, y in cur_comb: 
     cur_sum += arr[x][y] + arr[y][x]
 
   for x, y in rest_comb:

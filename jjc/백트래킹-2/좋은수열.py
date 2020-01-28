@@ -9,10 +9,10 @@ def dfs(idx):
     return 0
 
   for i in range(1, 4):
-      s.append(i)
-      if dfs(idx + 1) == 0:
-          return 0
-      s.pop()
+    s.append(i)
+    if dfs(idx + 1) == 0:
+        return 0
+    s.pop()
 
 if __name__ == "__main__":
     n = int(input())
