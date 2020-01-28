@@ -18,10 +18,12 @@ int main() {
 		for (int i = 0; i < N; i++) {
 			if (t[i] > mid) sum += t[i] - mid;
 		}
-		if (sum < M) right = mid - 1;
-		else {
+		if (sum <= M) { //더 배정해도 됨 
 			if (ans < mid) ans = mid;
 			left = mid + 1;
+		}
+		else { //예산이 부족한 경우  
+			right = mid - 1;
 		}
 	}
 	cout << ans;
