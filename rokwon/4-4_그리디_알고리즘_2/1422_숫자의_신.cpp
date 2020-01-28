@@ -34,6 +34,7 @@ int main(void){
     } 
     sort(arr.begin(), arr.end(), cmp );
 
+
     for(int i = 0; i < K; i++) {
         if (arr[i] == max_value && point == 0) {
             for(int j = 0; j <= N-K; j++) {
