@@ -26,6 +26,7 @@ int main() {
 		for (int i = 0; i < M; i++) {
 			for (int j=ans; j <= student[i].second; j++) {
 				if (ans<N) {
+					cout << "\n" << student[i].first << " " << student[i].second << "\n";
 					ans++;
 					break;
 				}

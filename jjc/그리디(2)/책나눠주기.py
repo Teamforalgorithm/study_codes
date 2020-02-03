@@ -11,7 +11,8 @@ for _ in range(t):
     ai, bi = map(int, input().split())
     form.append((ai, bi))
   ans = 0
-  form.sort(reverse = True)
+  # form.sort(reverse = True)
+  form.sort(key=lambda el: el[1])
   
   for i in range(m):
     for j in range(1, n+1, 1):
