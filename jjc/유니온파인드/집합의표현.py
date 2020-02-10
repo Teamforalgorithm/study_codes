@@ -1,29 +1,34 @@
 import sys
-input = lambda: sys.stdin.readline().strip()
+
+
+def input(): return sys.stdin.readline().strip()
+
 
 n, m = map(int, input().split())
-parent = [0]*1000001
+parent = [0] * 1000001
 
 # 처음에는 각 원소들에 연결된 정보가 없어서 부모로 자기 자신을 가지고 있다.
 # 즉 자기 자신이 부모임
 for i in range(n):
-  parent[i] = i
+    parent[i] = i
+
 
 def Find(x):
-  global parent
-  if x == parent[x]:
-    return x
-  else:
-    y = Find(parent[x])
-    parent[x] = y
-    return y
+    global parent
+    if x == parent[x]:
+        return x
+    else:
+        y = Find(parent[x])
+        parent[x] = y
+        return y
 
 
 def Union(x, y):
-  global parent
-  x = Find(x)
-  y = Find(y)
-  parent[y] = x
+    global parent
+    x = Find(x)
+    y = Find(y)
+    parent[y] = x
+
 
 '''
 합집합은 0 a b의 형태 => a와 b를 합치는 연산
@@ -32,16 +37,14 @@ def Union(x, y):
 '''
 
 for _ in range(m):
-  op, a, b = map(int, input().split())
-  if op == 0:
-    Union(a, b)
-  elif op == 1:
-    ap = Find(a)
-    bp = Find(b)
-    
-    if ap == bp:
-      print('YES')
-    else:
-      print('NO')
+    op, a, b = map(int, input().split())
+    if op == 0:
+        Union(a, b)
+    elif op == 1:
+        ap = Find(a)
+        bp = Find(b)
 
-
+        if ap == bp:
+            print('YES')
+        else:
+            print('NO')

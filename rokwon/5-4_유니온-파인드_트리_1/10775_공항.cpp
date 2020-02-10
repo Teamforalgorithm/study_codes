@@ -23,7 +23,7 @@ int main(void) {
     int G, P;
     int num = 0;
     int check = 0;
-    int pip = 0;
+    int point = 0;
     
     cin >> G >> P;
 
@@ -32,16 +32,16 @@ int main(void) {
 
     for (int i = 1; i <= P; i++) {
         cin >> num;
-
-        if (pip == 0) {
+        if (point == 0) {
             check = find(num);
             arr[check]--;
-        }
 
-        if (arr[check] < 0 && pip == 0)
-            pip = 1;
-        else if(pip == 0)
-            counter++;
+            if (arr[check] < 0)
+                point = 1;  
+            else
+                counter++;
+        }
+        
     }
 
     cout << counter;

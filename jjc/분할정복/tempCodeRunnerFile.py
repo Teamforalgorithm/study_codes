@@ -1,1 +1,4 @@
-'0.'+'0'*(-index)+result
+'0.' + '0' * (-index) + result
+
+
+HERE!!
