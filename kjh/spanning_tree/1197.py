@@ -1,9 +1,7 @@
+# NOTE: Kruskal algorithm used.
 import sys
 
 V, E = map(int, sys.stdin.readline().split())
-# graph = []
-# [graph.append([0] * V) for _ in range(V)]
-
 info = []
 
 for _ in range(E):
@@ -55,4 +53,4 @@ def kruskal(n, info):
     # return result, min_weight
 
 
-print(kruskal(E, info))
+print(kruskal(V, info))
