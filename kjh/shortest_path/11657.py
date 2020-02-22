@@ -1,15 +1,14 @@
 # NOTE: Floyd-Warshall algorithm used.
 import sys
 
-INF = 1000000
 N, M = map(int, sys.stdin.readline().split())
 D = [0] * N
 P = [0] * N
 
 for i in range(N):
-    D[i] = [INF] * N
+    D[i] = [float("inf")] * N
     D[i][i] = 0
-    P[i] = [INF] * N
+    P[i] = [float("inf")] * N
 
 for _ in range(M):
     A, B, C = map(int, sys.stdin.readline().split())
@@ -27,7 +26,7 @@ print()
 for k in range(N):
     for i in range(N):
         for j in range(N):
-            if P[i][j] == INF:
+            if P[i][j] == float("inf"):
                 continue
             if D[i][j] > D[i][k] + D[k][j]:
                 D[i][j] = D[i][k] + D[k][j]

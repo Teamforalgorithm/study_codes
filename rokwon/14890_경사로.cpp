@@ -1,131 +1,52 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
+#include <stdio.h>
 
-using namespace std;
-
-int main(void) {
-
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	cout.tie(0);
-
-	int N, L;
-
-	int arr[102][102];
-	int DP[102];
-	int count = 0;
-	bool boom = false;
-
-	cin >> N >> L;
-	
-	for (int i = 0; i < N; i++)
-		for (int j = 0; j < N; j++)
-			cin >> arr[i][j];
-
-
-
-	for (int i = 0; i < N; i++ ) {
-		for (int j = 0; j < N; j++) {
-
-			if (boom == false) {
-				if (j == 0)	DP[j] = 1;
-				else if (arr[i][j] == arr[i][j-1])	DP[j] = DP[j-1]+1;
-				else {
-					if (arr[i][j] - arr[i][j-1] == 1 ) {
-						if (DP[j-1] >= L)	DP[j] = 1;
-						else	break;
-					}
-					else if (arr[i][j] - arr[i][j-1] == -1) {
-						if (L != 1)	{
-							boom = true;
-							DP[j] = 1;
-						}
-						else {
-							DP[j] = 0;
-						}
-						
-					}
-					else	break;		
-				}
+int main(void)
+{
+	int number_of_N, L, ans = 0, x, y, c;
+	short N[200][100];
+	scanf("%d %d", &number_of_N, &L);
+	for (y = 0; y < number_of_N; y++)
+	{
+		for (x = 0; x < number_of_N; x++)
+		{
+			scanf("%hd", &N[x][y]);
+		}
+	}
+	for (y = 0; y < number_of_N; y++)
+	{
+		for (x = 0; x < number_of_N; x++)
+		{
+			N[x + number_of_N][y] = N[y][x];
+		}
+	}
+	for (x = 0; x < number_of_N * 2; x++)
+	{
+		c = 1;
+		for (y = 0; y < number_of_N - 1; y++)
+		{
+			if (N[x][y] == N[x][y + 1])
+			{
+				c++;
 			}
-			else {
-				if (arr[i][j] == arr[i][j-1]) {
-					DP[j] = DP[j-1]+1;
-					if (L == DP[j]) {
-						DP[j] = 0;
-						boom =false;
-					}
-				}
-				else break;
+			else if (N[x][y] + 1 == N[x][y + 1] && c >= L)
+			{
+				c = 1;
 			}
-
-			if ( j == N-1) {
-				if (boom == true) {
-					if (DP[j] < L)	break;
-					else	count++;
-				}
-				else	count++;
+			else if (N[x][y] - 1 == N[x][y + 1] && c >= 0)
+			{
+				c = -L + 1;
+			}
+			else
+			{
+				break;
 			}
 		}
-		boom = false;
-	}
-
-	boom = false;
-
-	for (int i = 0; i < N; i++ ) {
-		for (int j = 0; j < N; j++ ) {
-
-			if (boom == false) {
-				if (j == 0 )	DP[j] = 1;
-				else if (arr[j][i] == arr[j-1][i])	DP[j] = DP[j-1]+1;
-				else {
-					if (arr[j][i] - arr[j-1][i] == 1 ) {
-						if (DP[j-1] >= L)	DP[j] = 1;
-						else	break;
-					}
-					else if (arr[j][i] - arr[j-1][i] == -1) {
-						if (L != 1)	{
-							boom = true;
-							DP[j] = 1;
-						}
-						else {
-							DP[j] = 0;
-						}
-					}
-					else	break;		
-				}
-			}
-			else {
-				if (arr[j][i] == arr[j-1][i]) {
-					DP[j] = DP[j-1]+1;
-					if (L <= DP[j]) {
-						DP[j] -= L;
-						boom =false;
-					}
-				}
-				else break;
-			}
-
-
-			if ( j == N-1) {
-				if (boom == true) {
-					if (DP[j] < L)
-						break;
-					else
-						count++;
-				}
-				else
-					count++;
-			}
-				
+		if (y == number_of_N - 1 && c >= 0)
+		{
+			ans++;
 		}
-		boom = false;
 	}
-
-	cout << count;
+	printf("%d", ans);
 
 	return 0;
 }
-
-
