@@ -2,46 +2,59 @@
 #include <vector>
 using namespace std;
 
-int s[9][9];
-vector<pair<int, int>> v;
+int pan[9][9];
+typedef pair<int, int> p;
+vector<p> blank;
 
-bool check(int x, int y, int num) {
+void sudoku(int idx, int pan[9][9]) {
+	int arr[9][9];
 	for (int i = 0; i < 9; i++) {
-		if (s[x][i] == num) return false;
-	}
-	for (int i = 0; i < 9; i++) {
-		if (s[i][y] == num) return false;
-	}
-	x = x / 3;
-	y = y / 3;
-	for (int i = x * 3; i < (x * 3) + 3; i++) {
-		for (int j = y * 3; j < (y * 3) + 3; j++) {
-			if (s[i][j] == num) return false;
+		for (int j = 0; j < 9; j++) {
+			arr[i][j] = pan[i][j];
 		}
 	}
-	return true;
+	if (idx == blank.size()) {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				cout << pan[i][j] << " ";
+			}
+			cout << "\n";
+		}
+		exit(0);
+	}
+	int y = blank[idx].first;
+	int x = blank[idx].second;
+
+	bool num[10] = {};
+	for (int i = 0; i < 10; i++) {
+		num[i] = true;
+	}
+	for (int i = 0; i < 9; i++) {
+		num[arr[y][i]] = false;
+		num[arr[i][x]] = false;
+	}
+	int startY = (y / 3) * 3;
+	int startX = (x / 3) * 3;
+	for (int i = startY; i < startY + 3; i++) {
+		for (int j = startX; j < startX + 3; j++) {
+			num[arr[i][j]] = false;
+		}
+	}
+	for (int i = 1; i <= 9; i++) {
+		if (num[i]) {
+			arr[y][x] = i;
+			sudoku(idx + 1, arr);
+		}
+	}
 }
+
 int main() {
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 9; j++) {
-			cin >> s[i][j];
-			if (s[i][j] == 0) v.push_back(make_pair(i, j));
+			cin >> pan[i][j];
+			if (pan[i][j] == 0) blank.push_back({ i,j });
 		}
 	}
-	for (int i = 0; i < v.size(); i++) {
-		int x = v[i].first;
-		int y = v[i].second;
-		for (int i = 0; i < 9; i++) {
-			if (check(x, y, i)) {
-				s[x][y] = i;
-			}
-		}
-	}
-	for (int i = 0; i < 9; i++) {
-		for (int j = 0; j < 9; j++) {
-			cout << s[i][j] << " ";
-		}
-		cout << "\n";
-	}
+	sudoku(0, pan);
 	return 0;
 }
