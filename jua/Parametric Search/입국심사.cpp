@@ -1,30 +1,31 @@
 #include <iostream>
 using namespace std;
 
+typedef long long ll;
 int N, M;
-long long arr[100000];
+ll T[100000];
 
-const long long MAX = 1000000000000000000LL;
-
-bool possible(long long time) {
-	long long cnt = 0;
+bool possible(ll time) {
+	ll sum = 0;
 	for (int i = 0; i < N; i++) {
-		cnt += time / arr[i];
+		sum += time / T[i];
 	}
-	return cnt >= M;
+	return sum >= M;
 }
 
 int main() {
 	cin >> N >> M;
+	ll MAX = 0;
 	for (int i = 0; i < N; i++) {
-		cin >> arr[i];
+		cin >> T[i];
+		if (MAX < T[i]) MAX = T[i];
 	}
-	long long left = 0, right = MAX;
+	ll left = 0, right = MAX * M;
 	while (left <= right) {
-		long long mid = (left + right) / 2;
+		ll mid = (left + right) / 2;
 		if (possible(mid)) right = mid - 1;
 		else left = mid + 1;
 	}
-	cout << left;
+	cout << left << "\n";
 	return 0;
 }
