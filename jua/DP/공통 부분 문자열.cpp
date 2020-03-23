@@ -13,7 +13,7 @@ int LCS(bool head, int i, int j) {
 	if (i == -1 || j == -1) return 0;
 	int& ret = cache[head][i][j];
 	if (ret != -1) return ret;
-	if (head == 0) {
+	if (head == 0) { //현재 이어지는 문자열이 없는 경우 
 		ret = max(LCS(false, i - 1, j), LCS(false, i, j - 1));
 		if (str1[i] == str2[j]) ret = max(ret, LCS(true, i - 1, j - 1) + 1);
 	}
